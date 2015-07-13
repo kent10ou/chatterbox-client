@@ -32,8 +32,15 @@ var app = {
 	},
 
 	clearMessages: function () {
-		
-	}
+		$('#chats').html('');
+	},
 
+	addMessage: function (message) {
+		$('#chats').append('<div>' + message + '</div');
+	},
+
+	addRoom: function (room) {
+		$('#roomSelect').append('<div>' + room + '</div>');
+	}
 
 };
