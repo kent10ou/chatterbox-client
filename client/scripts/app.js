@@ -36,10 +36,10 @@ var app = {
 		  	for(var i = 0;i < data.results.length; i++) {
 		  		console.log(data.results[i]);
 		  		// console.log('datakey:', data[key]);
-		  		var usern = encodeURI(data.results[i].username);
-		  		var textU = encodeURI(data.results[i].text);
-		  		$('#main').append('<div id="displayMessages"> '+ decodeURI(usern)+ '<br/>' + decodeURI(textU) + '</div>' + '<br/>' );
-
+		  		var usern = _.escape(data.results[i].username);
+		  		var textU = _.escape(data.results[i].text);
+		  		$('#main').append('<div id="displayMessages">' + usern  + '</div>' + '<br/>' + '<div>'+ (textU) + '</div>' + '<br/>');
+		  		$('#displayMessages').click(function(){ alert("hello"); });
 		  	}
 		  }
 		});
@@ -58,9 +58,17 @@ var app = {
 
 	addFriend: function () {
 		// app.friendsList[this] = true;
+	},
+
+	handleSubmit: function () {
+		$('.submit').click(function (message) {
+		  this.send(message);
+		})
 	}
 
 };
+
+
 app.init();
 // app.send('WAT?!')
 // app.fetch();
