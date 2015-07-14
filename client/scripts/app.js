@@ -2,9 +2,11 @@
 var app = {
 	init: function () {
 		$(document).ready(function () {
+			// app.message = $POST['message'];
 			app.fetch();
 			app.addFriend();
 			app.friendsList = {};
+			app.handleSubmit();
 		});
 	},
 
@@ -60,10 +62,9 @@ var app = {
 		// app.friendsList[this] = true;
 	},
 
-	handleSubmit: function () {
-		$('.submit').click(function (message) {
-		  this.send(message);
-		})
+	handleSubmit: function (message) {
+		this.send(message);
+		// })
 	}
 
 };

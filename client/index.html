@@ -22,15 +22,15 @@
     <div id="main">
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
-      <form action="demo_form.asp">
-        Chat Message: <input type="text" message="fname"><input type="submit" value="Submit">
+      <form action="scripts/app.js" method="post">
+        Chat Message: <input type="text" name="msg"><br><input type="submit" value="Submit" name = "messages">
       </form>
     </div>
 
     <script>
       $('#displayMessages').click(function(){
         alert("hello");
-      }); 
-      </script>
+      });
+    </script>
   </body>
 </html>
