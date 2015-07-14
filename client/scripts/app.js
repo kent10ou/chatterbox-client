@@ -1,13 +1,20 @@
 // YOUR CODE HERE:
 var app = {
 	init: function () {
+		$(document).ready(function() {
+		    console.log( "ready!" );
+		});
+	},
 
+	server: function (url) {
+		url='https://api.parse.com/1/classes/chatterbox'
+		return url;
 	},
 
 	send: function (message) {
 		$.ajax({
 		  // This is the url you should use to communicate with the parse API server.
-		  url: 'https://api.parse.com/1/classes/chatterbox',
+		  url: this.server,
 		  type: 'POST',
 		  data: JSON.stringify(message),
 		  contentType: 'application/json',
@@ -23,11 +30,17 @@ var app = {
 
 	fetch: function () {
 		$.ajax({
-		  url: undefined,
-		  // data: JSON.stringify(),
-		  // success: function (data) {
-		  // 	console.log('sent data: ', data);
-		  // }
+		  url: this.server,
+		  type:'GET',
+		  // data: ,
+		  success: function(data){
+		  	console.log('data: ',data.results[0]);
+		  	for(var i = 0;i < data.results.length; i++) {
+		  		console.log(data.results[i]);
+		  		// console.log('datakey:', data[key]);
+		  		$('#main').append('<div>'+ encodeURI(data.results[i].username)+ '\n' + encodeURI(data.results[i].text) + '</div>' );
+		  	}
+		  }
 		});
 	},
 
@@ -41,6 +54,12 @@ var app = {
 
 	addRoom: function (room) {
 		$('#roomSelect').append('<div>' + room + '</div>');
+	},
+
+	addFriend: function () {
+
 	}
 
 };
+
+app.fetch();
