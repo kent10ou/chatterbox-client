@@ -1,15 +1,14 @@
 // YOUR CODE HERE:
 var app = {
 	init: function () {
-		$(document).ready(function() {
-		    console.log( "ready!" );
+		$(document).ready(function () {
+			app.fetch();
+			app.addFriend();
+			app.friendsList = {};
 		});
 	},
 
-	server: function (url) {
-		url='https://api.parse.com/1/classes/chatterbox'
-		return url;
-	},
+	server: 'https://api.parse.com/1/classes/chatterbox',
 
 	send: function (message) {
 		$.ajax({
@@ -32,18 +31,19 @@ var app = {
 		$.ajax({
 		  url: this.server,
 		  type:'GET',
-		  // data: ,
 		  success: function(data){
 		  	console.log('data: ',data.results[0]);
 		  	for(var i = 0;i < data.results.length; i++) {
 		  		console.log(data.results[i]);
 		  		// console.log('datakey:', data[key]);
-		  		$('#main').append('<div>'+ encodeURI(data.results[i].username)+ '\n' + encodeURI(data.results[i].text) + '</div>' );
+		  		var usern = encodeURI(data.results[i].username);
+		  		var textU = encodeURI(data.results[i].text);
+		  		$('#main').append('<div id="displayMessages"> '+ decodeURI(usern)+ '<br/>' + decodeURI(textU) + '</div>' + '<br/>' );
+
 		  	}
 		  }
 		});
 	},
-
 	clearMessages: function () {
 		$('#chats').html('');
 	},
@@ -57,9 +57,10 @@ var app = {
 	},
 
 	addFriend: function () {
-
+		// app.friendsList[this] = true;
 	}
 
 };
-
-app.fetch();
+app.init();
+// app.send('WAT?!')
+// app.fetch();
