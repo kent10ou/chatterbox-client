@@ -3,7 +3,7 @@ var app = {
 	init: function () {
 		$(document).ready(function () {
 			// app.message = $POST['message'];
-			app.fetch();
+			setInterval(app.fetch(), 5000);
 			app.addFriend();
 			app.friendsList = {};
 			app.handleSubmit();
@@ -35,13 +35,13 @@ var app = {
 		  type:'GET',
 		  success: function(data){
 		  	console.log('data: ',data.results[0]);
-		  	for(var i = 0;i < data.results.length; i++) {
+		  	for(var i = 0; i < data.results.length; i++) {
 		  		console.log(data.results[i]);
 		  		// console.log('datakey:', data[key]);
 		  		var usern = _.escape(data.results[i].username);
 		  		var textU = _.escape(data.results[i].text);
-		  		$('#main').append('<div id="displayMessages">' + usern  + '</div>' + '<br/>' + '<div>'+ (textU) + '</div>' + '<br/>');
-		  		$('#displayMessages').click(function(){ alert("hello"); });
+		  		$('#main').append("<div class='displayMessages'>" + usern  + '</div>' + '<br/>' + '<div>'+ (textU) + '</div>' + '<br/>');
+		  		$(".displayMessages").click(function(){ alert("hello"); });
 		  	}
 		  }
 		});
