@@ -13,8 +13,10 @@
     <script src="scripts/app.js"></script>
 
     <style>
-    .displayMessages{
+    .users{
       background-color: silver;
+      margin: 10px 0;
+      padding: 10px 4px;
     }
     </style>
   </head>
@@ -22,14 +24,18 @@
     <div id="main">
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
-      <form action=app.handleSubmit() method="post">
-        Chat Message: <input type="text" name="msg"><br><input type="submit" value="Submit" name = "messages">
+      <form action="app.js" method="post">
+        Chat Message: <input type="text" name="msg">
+        <br/>
+        <input type="submit" value="Submit">
       </form>
-      <script type="text/javascript">
-      $('#main').append("<div class='displayMessages'>" + "hello" + '</div>' + '<br />');
-      $(".displayMessages").click(function(){ alert("hello"); });
-      </script>
+
     </div>
+
+    <div id = "hello">Hello</div>
+    <script type="text/javascript">
+
+    </script>
 
   </body>
 </html>
