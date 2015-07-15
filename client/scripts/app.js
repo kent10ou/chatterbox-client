@@ -4,18 +4,14 @@ var app = {
 		$(document).ready(function () {
 			// Event Handling
 			$('#main').on('click','.users', function(event){
-				console.log(event.data);
+				console.log(event.toElement.outerText);
 
-				// console.log(newE);
-				
-				// console.log('main clicked');
-				// console.log( $('.users').text());
 				app.addFriend(app.data );
 
 			});
 
 			// app.message = $POST['message'];
-			app.data;
+			// app.data;
 			app.fetch();
 			app.friendsList = {};
 			app.addFriend();
@@ -48,18 +44,18 @@ var app = {
 		  type:'GET',
 		  success: function(data){
 		  	// console.log('data: ',data.results[0]);
-		  	app.data = data;
+		  	// app.data = data;
 		  	for(var i = 0; i < data.results.length; i++) {
-		  		
+
 		  		var usern = _.escape(data.results[i].username);
 		  		var textU = _.escape(data.results[i].text);
 		  		$('#main').append(
-		  			"<div class='users'>" + 
-		  				usern + 
+		  			"<div class='users'>" +
+		  				usern +
 		  			'</div>');
 		  		$('#main').append(
-		  			"<div class='texts'>" + 
-		  				textU + 
+		  			"<div class='texts'>" +
+		  				textU +
 	  				'</div>');
 		  	}
 		  }
@@ -84,7 +80,7 @@ var app = {
 	},
 
 	handleSubmit: function (message) {
-		this.send(message);
+		// this.send(message);
 		// })
 	}
 
