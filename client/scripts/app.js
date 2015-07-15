@@ -5,18 +5,23 @@ var app = {
 			// Event Handling
 			$('#main').on('click','.users', function(event){
 				console.log(event.toElement.outerText);
-
-				app.addFriend(app.data );
-
+				var friendN = event.toElement.outerText;
+				// console.log(friendN);
+				app.addFriend(friendN);
 			});
 
 			// app.message = $POST['message'];
 			// app.data;
-			app.fetch();
+			// app.fetch();
 			app.friendsList = {};
 			app.addFriend();
 			app.handleSubmit();
+			// app.$text = $('#message');
+			// app.username = window.location.search.substr(10);
+			setInterval(app.fetch.bind(app), 500);
+			// $('send').on('submit', app.handleSubmit);
 		});
+
 	},
 
 	server: 'https://api.parse.com/1/classes/chatterbox',
@@ -45,21 +50,21 @@ var app = {
 		  success: function(data){
 		  	// console.log('data: ',data.results[0]);
 		  	// app.data = data;
+		  	$('#main').html('');
 		  	for(var i = 0; i < data.results.length; i++) {
-
 		  		var usern = _.escape(data.results[i].username);
+		  		if( app.friendsList[usern]){
+		  			$('#main').append( "<div class='users friends'>" + usern + '</div>');
+		  		}else{
+		  			$('#main').append( "<div class='users'>" + usern + '</div>');
+		  		}
 		  		var textU = _.escape(data.results[i].text);
-		  		$('#main').append(
-		  			"<div class='users'>" +
-		  				usern +
-		  			'</div>');
-		  		$('#main').append(
-		  			"<div class='texts'>" +
-		  				textU +
-	  				'</div>');
+		  		// $('#main').append( "<div class='users'>" + usern + '</div>');
+		  		$('#main').append( "<div class='texts'>" + textU +'</div>');
 		  	}
 		  }
 		});
+		// console.log("done");
 	},
 	clearMessages: function () {
 		$('#chats').html('');
@@ -73,15 +78,21 @@ var app = {
 		$('#roomSelect').append('<div>' + room + '</div>');
 	},
 
-	addFriend: function (data) {
-		// console.log('addF',data);
-		// var userN = data.results
+	addFriend: function (friendN) {
+		app.friendsList[friendN] = true;
 
 	},
 
-	handleSubmit: function (message) {
+	handleSubmit: function () {
 		// this.send(message);
 		// })
+		// e.preventDefault();
+		// var message= {
+		// 	username: app.username,
+		// 	text: app.$text.val()
+		// }
+		// app.$text.val(''); // clear $text
+		// app.send(message); 
 	}
 
 };
