@@ -6,7 +6,6 @@ var app = {
 			$('#main').on('click','.users', function(event){
 				console.log(event.toElement.outerText);
 				var friendN = event.toElement.outerText;
-				// console.log(friendN);
 				app.addFriend(friendN);
 			});
 
@@ -15,11 +14,10 @@ var app = {
 			// app.fetch();
 			app.friendsList = {};
 			app.addFriend();
-			app.handleSubmit();
-			// app.$text = $('#message');
-			// app.username = window.location.search.substr(10);
+			app.$text = $('#message');
+			app.username = window.location.search.substr(10);
 			setInterval(app.fetch.bind(app), 500);
-			// $('send').on('submit', app.handleSubmit);
+			$('#send').on('submit', app.handleSubmit);
 		});
 
 	},
@@ -83,16 +81,15 @@ var app = {
 
 	},
 
-	handleSubmit: function () {
-		// this.send(message);
-		// })
-		// e.preventDefault();
-		// var message= {
-		// 	username: app.username,
-		// 	text: app.$text.val()
-		// }
-		// app.$text.val(''); // clear $text
-		// app.send(message); 
+	handleSubmit: function(event) {
+		event.preventDefault();
+		var message= {
+			username: app.username,
+			text: app.$text.val(),
+			roomname: 'lobby'
+		}
+		app.$text.val(''); // clear $text
+		app.send(message); 
 	}
 
 };
